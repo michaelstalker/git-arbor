@@ -17,13 +17,11 @@ end
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "git-arbor"
-  gem.homepage = "http://github.com/mstalker/git-arbor"
+  gem.homepage = "http://github.com/SciMed/git-arbor"
   gem.license = "MIT"
   gem.summary = %Q{Git Arbor will help identify Git branches you no longer need.}
-  gem.description = %Q{Git Arbor will help identify Git branches you no longer need.}
   gem.email = "michael.stalker@scimedsolutions.com"
   gem.authors = ["Michael Stalker"]
-  gem.version = GitArbor::Version::VERSION
 end
 Jeweler::RubygemsDotOrgTasks.new
 
