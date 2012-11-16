@@ -3,4 +3,4 @@
 require_relative '../lib/git_arbor'
 
 arbor = GitArbor::Runner.new
-arbor.old_branches
+p arbor.old_branches

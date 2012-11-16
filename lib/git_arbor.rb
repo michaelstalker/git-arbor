@@ -2,16 +2,16 @@ require 'date'
 
 module GitArbor
   class Runner
-
     AGE_THRESHOLD = Date.today - 180
 
     def old_branches
       branch_string = `git branch`
       branches = branch_array branch_string 
       branches.each do |branch|
-        date_time = branch_date_time branch
-        puts branch + " - #{date_time}" if date_time > AGE_THRESHOLD
+        print_date branch
       end
+
+      "You have #{branches.count} branches that are old."
     end
 
     private
@@ -31,6 +31,12 @@ module GitArbor
       def branch_date_time(branch)
         date_time_string = `git show #{branch} --format="%ci" | head -n 1`
         date_time = ::DateTime.parse date_time_string
+      end
+
+      def print_date(branch)
+        date_time = branch_date_time branch
+        date = date_time.to_date
+        puts branch + " - #{date}" if date < AGE_THRESHOLD
       end
   end
 end
