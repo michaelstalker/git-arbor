@@ -2,6 +2,10 @@
 
 require 'rubygems'
 require 'bundler'
+require 'rake'
+require 'jeweler'
+require_relative 'lib/version'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -9,35 +13,25 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'rake'
 
-require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "git-arbor"
   gem.homepage = "http://github.com/mstalker/git-arbor"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "michaels@scimedsolutions.com"
+  gem.summary = %Q{Git Arbor will help identify Git branches you no longer need.}
+  gem.description = %Q{Git Arbor will help identify Git branches you no longer need.}
+  gem.email = "michael.stalker@scimedsolutions.com"
   gem.authors = ["Michael Stalker"]
-  # dependencies defined in Gemfile
+  gem.version = GitArbor::Version::VERSION
 end
 Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
+  test.libs << 'lib' << 'spec'
+  test.pattern = 'spec/**/*_spec.rb'
   test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
 end
 
 task :default => :test
