@@ -5,7 +5,9 @@ module GitArbor
   class Runner
 
     def run(arguments)
-      p GitArbor::OldBranches.identify
+      branches = GitArbor::OldBranches.new
+      branches.identify
+      branches.print
     end
   end
 end

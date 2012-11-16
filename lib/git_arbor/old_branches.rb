@@ -1,35 +1,46 @@
 module GitArbor
-  module OldBranches
+  class OldBranches
     AGE_THRESHOLD = Date.today - 180
 
-    def self.identify
-      branch_string = `git branch`
-      branches = branch_array branch_string
+    def initialize
+      @pruning_candidates = []
+    end
+
+    def identify
+      branch_list = `git branch`
+      branches = branch_array branch_list
+
       branches.each do |branch|
-        print_date(branch) if branch_date_time(branch) < AGE_THRESHOLD
+        @pruning_candidates << branch if branch_date_time(branch) < AGE_THRESHOLD
+      end
+    end
+
+    def print
+      @pruning_candidates.each do |branch|
+        print_date(branch)
       end
     end
     
     private
 
-    def self.branch_array(branch_string)
-      branch_collection = []
+    def branch_array(branch_list)
+      branches = []
 
-      branch_string.each_line do |branch|
+      branch_list.each_line do |branch|
         branch.strip!
         branch.sub! '* ', ''
-        branch_collection << branch
+        branches << branch
       end
 
-      branch_collection
+      branches
     end
 
-    def self.branch_date_time(branch)
+    def branch_date_time(branch)
       date_time_string = `git show #{branch} --format="%ci" | head -n 1`
       date_time = ::DateTime.parse date_time_string
     end
 
-    def self.print_date(branch)
+    def print_date(branch)
       date_time = branch_date_time branch
       date = date_time.to_date
       puts branch + " - #{date}"
