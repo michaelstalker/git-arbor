@@ -1,6 +1,7 @@
 module GitArbor
   class OldBranches
-    AGE_THRESHOLD = Date.today - 180
+    AGE_IN_DAYS = 180
+    DATE_THRESHOLD = Date.today - AGE_IN_DAYS
 
     def initialize
       @pruning_candidates = []
@@ -11,11 +12,13 @@ module GitArbor
       branches = branch_array branch_list
 
       branches.each do |branch|
-        @pruning_candidates << branch if branch_date_time(branch) < AGE_THRESHOLD
+        @pruning_candidates << branch if branch_date_time(branch) < DATE_THRESHOLD
       end
     end
 
     def print
+      puts "Old branches (older than #{AGE_IN_DAYS} days old):"
+
       @pruning_candidates.each do |branch|
         print_date(branch)
       end
