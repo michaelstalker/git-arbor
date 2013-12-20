@@ -22,7 +22,11 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{Git Arbor will help identify Git branches you no longer need.}
   gem.email = "michael.stalker@scimedsolutions.com"
   gem.authors = ["Michael Stalker"]
+
+  gem.add_dependency "trollop"
+  gem.add_development_dependency "rdoc", "~> 3.12"
 end
+
 Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'

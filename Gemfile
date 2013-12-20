@@ -1,8 +1,4 @@
 source "http://rubygems.org"
+gemspec
 
-group :development do
-  gem "rdoc", "~> 3.12"
-  gem "bundler"
-  gem "jeweler", "~> 1.8.4"
-  gem "trollop"
-end
+gem "jeweler", "~> 1.8.4"
