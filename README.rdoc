@@ -14,4 +14,4 @@ Git Arbor will help identify Git branches you no longer need. It does so by look
 
 == Copyright
 
-Copyright (c) 2012 SciMed Solutions. See LICENSE.txt for further details.
+Copyright (c) 2012-2013 SciMed Solutions. See LICENSE.txt for further details.
