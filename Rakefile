@@ -24,7 +24,6 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Michael Stalker"]
 
   gem.add_dependency "trollop"
-  gem.add_development_dependency "rdoc", "~> 3.12"
 end
 
 Jeweler::RubygemsDotOrgTasks.new
