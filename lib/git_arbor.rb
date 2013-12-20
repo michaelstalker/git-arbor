@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'trollop'
 require_relative './git_arbor/old_branches'
 require_relative './git_arbor/merged_branches'
@@ -7,7 +8,7 @@ module GitArbor
     def run
       options = fetch_arguments
       branches = GitArbor::OldBranches.new(days_old: options[:age])
-      branches = GitArbor::MergedBranches.new
+      branches = GitArbor::MergedBranches.new if options[:merged]
       branches.identify
       branches.print
     end
